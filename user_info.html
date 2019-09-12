@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html>
+    
+    <head>
+        <title>User Information</title>
+    </head>
+    
+    <body>
+        <form action="/action_page.php">
+
+            <h2><center>User Information</center></h2>
+
+            <font size = 5>Full Name:</font> 
+            <input type="text" name="fulname" maxlength="100"><br>
+
+            <font size = 5>Address 1:  </font>
+	    <input type="text" name="add1" maxlength="100">
+	    <font size = 5>Address 2:  </font>
+	    <input type="text" name="add2" maxlength="100"><br>
+
+	    <font size = 5>City:  </font>
+	    <input type="text" name="city" maxlength="100">
+	    <font size = 5>State:  </font>
+	    <input type="text" name="state"><br>
+
+	    <font size = 5>Zip Code:  </font>
+	    <input type="text" name="zip">
+	    <font size = 5>Phone Number:  </font>
+	    <input type="tel" id="phone" name="phone" maxlength="12" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+	    <label>(###-###-####)<br>
+	    
+	    <font size = 5>Email:  </font>
+	    <input type="email" name="email" maxlength="100" required><br>
+	    
+	    <input type="submit">
+
+        </form>
+    </body>
