@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <title>Shipping Information</title>
+        <link rel="stylesheet" type="text/css" href="">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700,900&display=swap" rel="stylesheet">
+    </head>
+    
+    <body>
+        <header id="main-header">
+            <div id="main-nav-container">
+                <nav id="main-nav">
+                    <ul>
+                        <li class="nav-item"><a href="user_info.html">User Information</a></li>
+                        <li class="nav-item"><a href="shopping_cart.html">Shopping Cart</a></li>
+                        <li class="nav-item"><a href="shipping_information.html">Shipping Information</a></li>
+                        <li class="nav-item"><a href="checkout.html">Checkout</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        
+        <form>
+            <fieldset>
+                <legend class="form-name">Shipping Address</legend>
+                Use Physical Address
+                <input type="checkbox" name="physicaladdr" >
+                <br/><br/>Address Line 1: <br/>
+                <input type="text" name="addr1" maxlength="100" required>
+                <br/><br/>Address Line 2: <br/>
+                <input type="text" name="addr2" maxlength="100">
+                <div>
+                    <br/><br/>City:
+                    <input type="text" name="city" size="15" maxlength="100" required>
+                    State: 
+                    <select name="state" required>
+                        <option> </option>
+                        <option>AR</option><option>AK</option><option>AZ</option>
+                        <option>AR</option><option>CA</option><option>CO</option>
+                        <option>CT</option><option>DE</option><option>FL</option>
+                        <option>GA</option><option>HI</option><option>ID</option>
+                        <option>IL</option><option>IN</option><option>IA</option>
+                        <option>KS</option><option>KY</option><option>LA</option>
+                        <option>ME</option><option>MD</option><option>MA</option>
+                        <option>MI</option><option>MN</option><option>MS</option>
+                        <option>MO</option><option>MT</option><option>NE</option>
+                        <option>NV</option><option>NH</option><option>NJ</option>
+                        <option>NM</option><option>NY</option><option>NC</option>
+                        <option>ND</option><option>OH</option><option>OK</option>
+                        <option>OR</option><option>PA</option><option>RI</option>
+                        <option>SC</option><option>SD</option><option>TN</option>
+                        <option>TX</option><option>UT</option><option>VT</option>
+                        <option>VA</option><option>WA</option><option>WV</option>
+                        <option>WI</option><option>WY</option>
+                    </select>
+                    Zip:
+                    <input type="text" maxlength="9" minlength="5" size="7" required>
+                    <br/><br/>
+                    <input type="submit">
+                </div>
+                    
+                
+                
+            </fieldset>
+        </form>
+        
+    </body>
+
+</html>
