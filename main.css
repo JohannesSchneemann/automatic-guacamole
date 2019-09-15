@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    font-family: Roboto;
+    height: 100%;
+}
+
+#main-header {
+    background-color: #5E51AE;
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+#main-nav ul {
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.nav-item {
+    display: inline-block;
+    list-style: none;
+}
+
+.nav-item a {
+    text-decoration: none;
+    color: #fff;
+}
+
