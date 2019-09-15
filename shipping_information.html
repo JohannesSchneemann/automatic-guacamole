@@ -25,18 +25,25 @@
         
         <form>
             <fieldset>
-                <legend class="form-name">Shipping Address</legend>
-                Use Physical Address
-                <input type="checkbox" name="physicaladdr" >
-                <br/><br/>Address Line 1: <br/>
-                <input type="text" name="addr1" maxlength="100" required>
-                <br/><br/>Address Line 2: <br/>
-                <input type="text" name="addr2" maxlength="100">
+                <legend class="form-name"><h3>Shipping Address</h3></legend>
+                
+                <input type="checkbox" name="physicaladdr" id="physical-address">
+                <label for="physical-address">Use Physical Address</label><br><br>
+                
                 <div>
-                    <br/><br/>City:
-                    <input type="text" name="city" size="15" maxlength="100" required>
-                    State: 
-                    <select name="state" required>
+                    <label for="address-line-one">Address Line 1:</label>
+                    <input type="text" name="addr1" maxlength="100" id="address-line-one" required><br><br>
+                   
+                    <label for="address-line-two">Address Line 2:</label>
+                    <input type="text" name="addr2" size="10" maxlength="100" id="address-line-two">
+                </div><br>
+                
+                <div>
+                    <label for="city">City:</label>
+                    <input type="text" name="city" size="15" maxlength="100" id="city" required><br><br>
+                    
+                    <label for="state">State:</label>
+                    <select name="state" id="state" required>
                         <option> </option>
                         <option>AR</option><option>AK</option><option>AZ</option>
                         <option>AR</option><option>CA</option><option>CO</option>
@@ -55,15 +62,14 @@
                         <option>TX</option><option>UT</option><option>VT</option>
                         <option>VA</option><option>WA</option><option>WV</option>
                         <option>WI</option><option>WY</option>
-                    </select>
-                    Zip:
-                    <input type="text" maxlength="9" minlength="5" size="7" required>
-                    <br/><br/>
-                    <input type="submit">
-                </div>
+                    </select><br><br>
                     
-                
-                
+                    <label for="zip">Zip:</label>
+                    <input type="text" maxlength="9" minlength="5" size="7" name="zipcode" id="zip" required>
+                    <br><br>
+                    
+                    <input type="submit" value="Confirm Address">
+                </div>
             </fieldset>
         </form>
         
