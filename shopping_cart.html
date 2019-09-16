@@ -32,31 +32,38 @@
                     <legend><h3>Auto Parts</h3></legend>
                 <select name="parts">
                     <option value=""></option>
+                    <option value="alternator">alternator ($ 179.00 / piece)</option>
                     <option value="battery">battery ($ 135.00 / battery)</option>
                     <option value="brake disc">brake disc ($ 30.00 / disk)
                     <option value="drive belt">drive belt ($ 10.00 / belt)</option>
                     <option value="engine oil">engine oil ($ 25.00 / liter)</option>
+                    <option value="floor mats">floor mats ($ 89.00 / set)</option>
                     <option value="light bulbs">light bulbs ($ 2.00 / bulb)</option>
                     <option value="spark plug">spark plug ($ 8.00 / plug)</option>
                     <option value="tires">tires ($ 85.00 / tire)</option>
                     <option value="windshield wipers">windshield wipers ($ 12.00 / 2-pack)</option>
                 </select>
-               
-    
 
             <p>
                 Quantity (between 1 and 10): 
                 <input type="number" name="quantity" min="1" max="10">
             </p>
 
+            <p>
+                <label for="unit-price">Unit Price:</label>
+                <input type="text" size="7" value="$000.00" id="unit-price" readonly><br><br>
+            </p>
+
+            <p>
+                <label for="total-price"><strong>Total Price: </strong></label>
+                <input type="text" size="7" value="$000.00" id="total-price" readonly>
+            </p>
 
             <br><br>
             <input type="submit">
 
             </form>
             </fieldset>
-
-
 
         </div>
     </body>
