@@ -9,7 +9,7 @@ html {
 
 body {
     font-family: Roboto;
-    height: 100%;
+    height: 100vh;
 }
 
 #main-header {
@@ -34,3 +34,17 @@ body {
     color: #fff;
 }
 
+.iframe-container {
+    max-width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.iframe {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
