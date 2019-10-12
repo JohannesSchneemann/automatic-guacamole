@@ -80,7 +80,9 @@ body {
     margin: 0;
     padding: 0;
     border: none;
+	cursor: pointer; 
 }
+/* please double check line 83! */
 
 #main-footer {
     display: flex;
@@ -88,7 +90,6 @@ body {
     color: white;
     justify-content: center;
     background-color: #99bbff;
-
 }
 
 #footer-title-text {
