@@ -167,8 +167,12 @@ function showProducts(){
 	
 }
 
-function addItem(){
-	
+function addItem(ev){
+    ev.preventDefault();
+    let id = parseInt(ev.target.getAttribute('data-id'));
+    console.log('add to cart item', id);
+    ShoppingCart.add(id, 1);
+    showCart();
 }
 
 function errorMessage(){
