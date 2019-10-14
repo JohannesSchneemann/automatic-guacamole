@@ -143,21 +143,78 @@ document.addEventListener('DOMContentLoaded', ()=>{
             //when the page is ready
             getProducts( showProducts, errorMessage );
             //get the cart items from localStorage
-            CART.init();
+            ShoppingCart.init();
             //load the cart items
             showCart();
         });
 
 function showCart(){
+    let cartSection = document.getElementById('cart');
+    cart.innerHTML = '';
+    let s = ShoppingCart.sort('qty');
+    s.forEach( item =>{
+        let cartitem = document.createElement('div');
+        cartitem.className = 'cart-item';
+
+
+        let controls = document.createElement('div');
+        controls.className = 'controls';
+        cartitem.appendChild(controls);
+
+        let plus = document.createElement('span');
+        plus.textContent = '+';
+        plus.setAttribute('data-id', item.id)
+        controls.appendChild(plus);
+        plus.addEventListener('click', incrementCart)
+
+        let qty = document.createElement('span');
+        qty.textContent = item.qty;
+        controls.appendChild(qty);
+
+        let minus = document.createElement('span');
+        minus.textContent = '-';
+        minus.setAttribute('data-id', item.id)
+        controls.appendChild(minus);
+        minus.addEventListener('click', decrementCart)
+
+        let price = document.createElement('div');
+        price.className = 'price';
+        let cost = new Intl.NumberFormat('en-US',
+            {style: 'currency', currency:'USD'}).format(item.qty * item.itemPrice);
+        price.textContent = cost;
+        cartitem.appendChild(price);
+
+        cartSection.appendChild(cartitem);
+    })
 
 }
 
-function incrementCart(){
-	
+function incrementCart(ev){
+    ev.preventDefault();
+    let id = parseInt(ev.target.getAttribute(''));
+    ShoppingCart.increase(id, 1);
+    let controls = ev.target.parentElement;
+    let qty = controls.querySelector('');
+    let item = ShoppingCart.find(id);
+    if(item){
+        qty.textContent = item.qty;
+    }else{
+        document.getElementById('').removeChild(controls.parentElement);
+    }
 }
 
-function decrementCart(){
-	
+function decrementCart(ev){
+    ev.preventDefault();
+    let id = parseInt(ev.target.getAttribute(''));
+    ShoppingCart.reduce(id, 1);
+    let controls = ev.target.parentElement;
+    let qty = controls.querySelector('');
+    let item = ShoppingCart.find(id);
+    if(item){
+        qty.textContent = item.qty;
+    }else{
+        document.getElementById('').removeChild(controls.parentElement);
+    }
 }
 
 function getProducts(success, failure){
@@ -174,8 +231,33 @@ function getProducts(success, failure){
    	});	
 }
 
-function showProducts(){
-	
+function showProducts(products){
+    PRODUCTS = products;
+    //take data.products and display inside <section id="products">
+    let productSection = document.getElementById('products');
+    productSection.innerHTML = "";
+    products.forEach(product=>{
+        let card = document.createElement('div');
+        card.className = 'card';
+
+        //add the price
+        let price = document.createElement('p');
+        let cost = new Intl.NumberFormat('en-US',
+            {style:'currency', currency:'USD'}).format(product.price);
+        price.textContent = cost;
+        price.className = 'price';
+        card.appendChild(price);
+
+        //add the button to the card
+        let btn = document.createElement('button');
+        btn.className = 'btn';
+        btn.textContent = 'Add Item';
+        btn.setAttribute('data-id', product.id);
+        btn.addEventListener('click', addItem);
+        card.appendChild(btn);
+        //add the card to the section
+        productSection.appendChild(card);
+    })
 }
 
 function addItem(ev){
