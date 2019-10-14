@@ -11,7 +11,7 @@ const ShoppingCart = {
         if(_contents){
             ShoppingCart.contents = JSON.parse(_contents);
         }else{
-            //dummy test data
+            //dummy test data -> when done place an empty array here
             ShoppingCart.contents = [
                 {id:1, title:'Tires', qty:4, itemPrice: 85.35},
                 {id:2, title:'Battery', qty:1, itemPrice: 135.50},
@@ -53,7 +53,8 @@ const ShoppingCart = {
                     id: arr[0].id,
                     title: arr[0].title,
                     qty: 1,
-                    itemPrice: arr[0].price
+                    itemPrice: arr[0].price,
+                    //desc: arr[0].desc,
                 };
                 ShoppingCart.contents.push(obj);
 
@@ -88,7 +89,7 @@ const ShoppingCart = {
         });
         ShoppingCart.contents.forEach(async item=>{
             if(item.id === id && item.qty === 0)
-                await ShoppingCart.remove(id);
+                ShoppingCart.remove(id); //await
         });
         ShoppingCart.sync()
     },
@@ -159,8 +160,18 @@ function decrementCart(){
 	
 }
 
-function getProducts(){
-	
+function getProducts(success, failure){
+	//request the list of products 
+	const URL = "https://github.com/JohannesSchneemann/automatic-guacamole/blob/master/products.js";
+	fetch(URL, {
+    	method: 'GET',
+        mode: 'cors'
+  	})
+  	.then(response=>response.json())
+    .then(showProducts)
+    .catch(err=>{
+   		errorMessage(err.message);
+   	});	
 }
 
 function showProducts(){
