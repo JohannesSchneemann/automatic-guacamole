@@ -1,26 +1,33 @@
-/* asynchronous calls to local storage -> maybe not all functions needed*/
+/*  asynchronous calls to local storage -> maybe not all functions needed
+*   calls to local storage are expensive, therefore calls are made
+*   after data manipulation is done -> much more efficient
+* */
+
 
 const ShoppingCart = {
-    KEY: 'random_placeholder_to_connect_to_local_storage', /* unique id for localhost*/
-    contents: [], /* selected items in shopping cart*/
+    // unique string to identify local storage
+    KEY: 'random_placeholder_to_connect_to_local_storage',
+    contents: [], /* selected items in shopping cart to array of objects */
 
 
     /* check localStorage and initialize the contents of ShoppingCart.contents */
     init(){
         let _contents = localStorage.getItem(ShoppingCart.KEY);
         if(_contents){
+            // receives data in JSON format, and converts the text into a JavaScript object
             ShoppingCart.contents = JSON.parse(_contents);
         }else{
-            //dummy test data -> when done place an empty array here
+            //dummy test data -> when no data is in local storage, just to display something
             ShoppingCart.contents = [
                 {id:1, title:'Tires', qty:4, itemPrice: 85.35},
                 {id:2, title:'Battery', qty:1, itemPrice: 135.50},
                 {id:3, title:'Engine Oil', qty:1, itemPrice: 25.99}
-            ];
+            ]; //replace with an empty array when done
             ShoppingCart.sync();
         }
     },
 
+    // store JavaScript objects as a string
     async sync(){
         let _cart = JSON.stringify(ShoppingCart.contents);
         await localStorage.setItem(ShoppingCart.KEY, _cart);
@@ -38,12 +45,12 @@ const ShoppingCart = {
 
     /*  add new item to the ShoppingCart
     *   and check if item is not already in the ShoppingCart
-    *   update local storage*/
+    *   update local storage */
     add(id){
         if(ShoppingCart.find(id)){
             ShoppingCart.increase(id, 1);
         }else{
-            let arr = products.filter(product=>{
+            let arr = PRODUCTS.filter(product=>{
                 if(product.id == id){
                     return true;
                 }
@@ -51,7 +58,7 @@ const ShoppingCart = {
             if(arr && arr[0]){
                 let obj = {
                     id: arr[0].id,
-                    title: arr[0].title,
+                    //title: arr[0].title,
                     qty: 1,
                     itemPrice: arr[0].price,
                     //desc: arr[0].desc,
@@ -70,6 +77,7 @@ const ShoppingCart = {
     *   and update local storage
     * */
     increase(id, qty=1){
+        //loop through contents in the cart and if found add one to it
         ShoppingCart.contents = ShoppingCart.contents.map(item=>{
             if(item.id === id)
                 item.qty = item.qty + qty;
@@ -82,11 +90,13 @@ const ShoppingCart = {
     *   and update local storage
     * */
     reduce(id, qty=1){
+        //loop through contents in the cart and if found reduce by one
         ShoppingCart.contents = ShoppingCart.contents.map(item=>{
             if(item.id === id)
                 item.qty = item.qty - qty;
             return item;
         });
+        // remove item if quantity is zero
         ShoppingCart.contents.forEach(async item=>{
             if(item.id === id && item.qty === 0)
                 ShoppingCart.remove(id); //await
@@ -113,9 +123,9 @@ const ShoppingCart = {
         ShoppingCart.sync()
     },
 
-    /*  sort for title, id, quantity etc
+    /*  sort for title, id, quantity, item price  etc
     *   returns a copy of the ShoppingCart.contents array
-    *   with no impact on local storage
+    *   with no impact on local storage; using build-in sort method
     * */
     sort(field='title'){
         let sorted = ShoppingCart.contents.sort((a,b)=>{
@@ -137,7 +147,7 @@ const ShoppingCart = {
 };
 
 
-let Products = [];
+let PRODUCTS = [];
 
 document.addEventListener('DOMContentLoaded', ()=>{
             //when the page is ready
@@ -219,33 +229,34 @@ function decrementCart(ev){
 
 function getProducts(success, failure){
 	//request the list of products 
-	const URL = "https://github.com/JohannesSchneemann/automatic-guacamole/blob/master/products.js";
+	const URL = "https://github.com/JohannesSchneemann/automatic-guacamole/blob/master/products.JSON";
 	fetch(URL, {
     	method: 'GET',
         mode: 'cors'
   	})
+    // takes contents of products.json and turns them into string
   	.then(response=>response.json())
     .then(showProducts)
     .catch(err=>{
    		errorMessage(err.message);
    	});	
 }
-
+// this function needs work -> link to correct HTML tag
 function showProducts(products){
     PRODUCTS = products;
     //take data.products and display inside <section id="products">
-    let productSection = document.getElementById('products');
+    let productSection = document.getElementById('products'); // change it to appropriate html tag
     productSection.innerHTML = "";
     products.forEach(product=>{
         let card = document.createElement('div');
-        card.className = 'card';
+        card.className = 'card'; //CSS
 
         //add the price
-        let price = document.createElement('p');
+        let price = document.createElement('p'); //HTML tag
         let cost = new Intl.NumberFormat('en-US',
             {style:'currency', currency:'USD'}).format(product.price);
         price.textContent = cost;
-        price.className = 'price';
+        price.className = 'price'; //CSS
         card.appendChild(price);
 
         //add the button to the card
