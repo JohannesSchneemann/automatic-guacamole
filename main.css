@@ -33,6 +33,10 @@ body {
     height: 10%;
 }
 
+input[type=submit]:hover{
+	cursor: pointer;
+}
+
 #main-title {
     text-align: center;
     font-size: 2.5em;
@@ -79,10 +83,8 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
-    border: none;
-	cursor: pointer; 
+    border: none; 
 }
-/* please double check line 83! */
 
 #main-footer {
     display: flex;
