@@ -3,25 +3,25 @@
 <html lang="en">
         
     <body>
-        <form action="/action_page.php">
+        <form>
 		<fieldset>
                 <legend class="form-name"><h3>User Information</h3></legend>
 			    <table>
 				<tr>
 					<td><font size = 5>Full Name:</font></td>
-					<td><input type="text" name="fulname" maxlength="100"></td>
+					<td><input type="text" name="fullname" maxlength="100"></td>
 				</tr>
 				<tr>
 					<td><font size = 5>Address 1:  </font></td>
-					<td><input type="text" name="add1" maxlength="100"></td>
+					<td><input type="text" name="addr1" maxlength="100"></td>
 					<td><font size = 5>Address 2:  </font></td>
-					<td><input type="text" name="add2" maxlength="100"></td>
+					<td><input type="text" name="addr2" maxlength="100"></td>
 				</tr>
 				<tr>
 					<td><font size = 5>City:  </font></td>
 					<td><input type="text" name="city" maxlength="100"></td>
 					<td><font size = 5>State:  </font></td>
-					<td><select>
+					<td><select name="state">
 						<option value=""></option>
 					    <option value="AL">AL</option>
 					    <option value="AK">AK</option>
@@ -76,7 +76,7 @@
 				</tr>
 				<tr>
 					<td><font size = 5>Zip Code:  </font></td>
-					<td><input type="text" name="zip" minlength="5" maxlength="9" title="ZIP code (#####)"></td>
+                    <td><input type="text" name="zip" minlength="5" maxlength="9" title="ZIP code (#####)"></td>
 					<td><font size = 5>Phone Number:  </font></td>
 					<td><input type="tel" id="phone" name="phone" maxlength="12" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
 					    <label>(###-###-####)</td>
@@ -86,7 +86,7 @@
 					<td><input type="email" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" maxlength="100" title="Not a Valid Email Address" required></td>
 			</table>
 			<br>
-			<input type="submit">
+			<input id="user-info-submit" type="submit">
 		</fieldset>
         </form>
             
