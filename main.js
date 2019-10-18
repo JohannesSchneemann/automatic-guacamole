@@ -85,6 +85,13 @@ var cart = {
         this.totalAmt = this.cartAmt + this.taxAmt + this.shipAmt;
     }
 }
+// Derek stuff
+var cartSum = {
+    cartSumAmt: "",
+    cartTax: "",
+    cartShip: "",
+    cartTotal: "",
+}
 
 var iframe, partSelect, qtySelect, qty, price, unitPrice, totalPrice, physicalAddr;
 
@@ -171,6 +178,7 @@ function loadIframeContents(){
             iframe.contentWindow.document.getElementById("tax-amount").value = "$" + cart.taxAmt.toFixed(2);
             iframe.contentWindow.document.getElementById("ship-amount").value = "$" + cart.shipAmt.toFixed(2);
             iframe.contentWindow.document.getElementById("total-amount").value = "$" + cart.totalAmt.toFixed(2);
+            iframe.contentWindow.document.getElementById("supplyAmt").value = "$" + cartSum.cartSumAmt.toFixed(2);// Derek stuff
         }
     }
     
@@ -244,5 +252,14 @@ function shipSubmit(){
 }
 
 function checkoutSubmit(){
-    
+    cart.cartAmt = iframe.contentWindow.document.getElementById("cart-amount").value; // Derek stuff
+    cart.taxAmt = iframe.contentWindow.document.querySelector('[name="taxAmt"]').value;// Derek stuff
+    cart.shipAmt = iframe.contentWindow.document.querySelector('[name="shipAmt"]').value;// Derek stuff
+    cart.totalAmt = iframe.contentWindow.document.querySelector('[name="totalAmt"]').value;// Derek stuff
+}
+function summaryInfo(){
+    iframe.contentWindow.document.querySelector('[name="supplyAmt"]').value = cart.cartAmt;// Derek stuff
+    iframe.contentWindow.document.querySelector('[name="taxAmt"]').value = cart.taxAmt;// Derek stuff
+    iframe.contentWindow.document.querySelector('[name="shipFee"]').value = cart.shipAmt;// Derek stuff
+    iframe.contentWindow.document.querySelector('[name="totalAmt"]').value = cart.totalAmt;// Derek stuff
 }
