@@ -10,17 +10,37 @@
             <fieldset>
                 <legend><h3>Checkout</h3></legend>
                 <div>
+                    <table id="addTable">
+				        <tr>
+					       <td><font size = 5>Item: </font></td>
+				        </tr>
+                        <tr id="itemRow">
+					
+				        </tr>
+				        <tr>
+					       <td><input type="text" id="item1" value="" readonly> </td>
+				        </tr>
+				        <tr>
+                            <td><input type="text" id="item2" value="" readonly> </td>
+				        </tr>
+				        <tr>
+                            <td><input type="text" id="item3" value="" readonly> </td>
+				        </tr>
+				        <tr>
+					       <td><input type="text" id="item4" value="" readonly> </td>
+                        </tr>
+			     </table>
                     <label for="cart-amount">Shopping Cart Amount:</label>
-                    <input type="text" size="7" value="$000.00" id="cart-amount" readonly><br><br>
+                    <input type="text" size="7" name="cart_amt" value="$000.00" id="cart-amount" readonly><br><br>
                     
                     <label for="tax-amount">Total Tax Amount: </label>
-                    <input type="text" size="7" value="$000.00" id="tax-amount" readonly><br><br>
+                    <input type="text" size="7" name="taxAmt" value="$000.00" id="tax-amount" readonly><br><br>
                     
                     <label for="ship-amount">Total Shipping Amount: </label>
-                    <input type="text" size="7" value="$000.00" id="ship-amount" readonly><br><br>
+                    <input type="text" size="7" name="shipAmt" value="$000.00" id="ship-amount" readonly><br><br>
                     
                     <label for="total-amount"><strong>Total Amount Due: </strong></label>
-                    <input type="text" size="7" value="$000.00" id="total-amount" readonly>
+                    <input type="text" size="7" name="totalAmt" value="$000.00" id="total-amount" readonly>
                 </div><br>
                 
                 <hr><br>
