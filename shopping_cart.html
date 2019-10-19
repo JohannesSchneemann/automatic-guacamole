@@ -28,47 +28,29 @@
                 Quantity (between 1 and 10): 
                 <input type="number" name="quantity" min="1" max="10">
             </p>
-
+            <button id="add-button" type="button">Add Item</button>
             <p>
                 <label for="unit-price">Unit Price:</label>
                 <input type="text" size="7" value="$000.00" id="unit-price" readonly><br><br>
             </p>
 
             <p>
-                <label for="total-price"><strong>Total Price: </strong></label>
+                <label for="total-price"><strong>Total Price for Current Item: </strong></label>
                 <input type="text" size="7" value="$000.00" id="total-price" readonly>
+                <br>
+                <label for="cart-total"><strong>Cart Total:</strong></label>
+                <input type="text" size="7" value="$000.00" id="cart-total" readonly>
             </p>
-            <table id="addTable">
+            <table id="addTable" style="width:70%;text-align:left;">
 				<tr>
-					<td><font size = 5>Item: </font></td>
-                    <td><font size = 5>Unit: </font></td>
-                    <td><font size = 5>Price: </font></td>
+					<th><font size = 5>Item: </font></th>
+                    <th><font size = 5>Unit Price: </font></th>
+                    <th><font size = 5>Quantity: </font></th>
 				</tr>
-                <tr id="itemRow">
-					
-				</tr>
-				<tr>
-					<td><input type="text" id="item1" name="item1" value="" readonly> </td>
-                    <td><input type="text" id="unit1" name="unit1" value="" readonly> </td>
-                    <td><input type="text" id="price1" name="price1" value="" readonly> </td>
-				</tr>
-				<tr>
-                    <td><input type="text" id="item2" name="item2" value="" readonly> </td>
-                    <td><input type="text" id="unit2" name="unit2" value="" readonly> </td>
-                    <td><input type="text" id="price2" name="price2" value="" readonly> </td>
-				</tr>
-				<tr>
-                    <td><input type="text" id="item3" name="item3" value="" readonly> </td>
-                    <td><input type="text" id="unit3" name="unit3" value="" readonly> </td>
-                    <td><input type="text" id="price3" name="price3" value="" readonly> </td>
-				</tr>
-				<tr>
-					<td><input type="text" id="item4" name="item4" value="" readonly> </td>
-                    <td><input type="text" id="unit4" name="unit4" value="" readonly> </td>
-                    <td><input type="text" id="price4" name="price4" value="" readonly> </td>
-                </tr>
+                <hr>
 			</table>
             <br><br>
+            
             <input id="cart-submit" type="submit">
 
             
