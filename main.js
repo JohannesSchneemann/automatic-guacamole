@@ -361,3 +361,32 @@ function row() {
         newCell1.innerHTML = "Placement";
         newCell2.innerHTML = "Sudo Placement";
 }
+
+// AJAX - get states from database
+function showStates(str) {
+    var xhttp;
+    if (str == "") {
+        document.getElementById("state").innerHTML = "";
+        return;
+    }xhttp = new XMLHttpRequest(); xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("state").innerHTML = this.responseText;
+        }
+    };
+    xhttp.open("GET", "States.php?q="+str, true);
+    xhttp.send();
+}
+
+// AJAX - get products from database
+function getProducts(str) {
+    var xhttp;
+    if (str == "") {
+        document.getElementById("parts").innerHTML = "";
+        return;
+    }xhttp = new XMLHttpRequest(); xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("parts").innerHTML = this.responseText;
+        }
+    };
+    xhttp.open("GET", "Products.php?q="+str, true);
+    xhttp.send();
