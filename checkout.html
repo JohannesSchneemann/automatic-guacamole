@@ -10,25 +10,7 @@
             <fieldset>
                 <legend><h3>Checkout</h3></legend>
                 <div>
-                    <table id="addTable">
-				        <tr>
-					       <td><font size = 5>Item: </font></td>
-				        </tr>
-                        <tr id="itemRow">
-					
-				        </tr>
-				        <tr>
-					       <td><input type="text" id="item1" value="" readonly> </td>
-				        </tr>
-				        <tr>
-                            <td><input type="text" id="item2" value="" readonly> </td>
-				        </tr>
-				        <tr>
-                            <td><input type="text" id="item3" value="" readonly> </td>
-				        </tr>
-				        <tr>
-					       <td><input type="text" id="item4" value="" readonly> </td>
-                        </tr>
+                 <table id="addTable">
 			     </table>
                     <label for="cart-amount">Shopping Cart Amount:</label>
                     <input type="text" size="7" name="cart_amt" value="$000.00" id="cart-amount" readonly><br><br>
@@ -42,6 +24,22 @@
                     <label for="total-amount"><strong>Total Amount Due: </strong></label>
                     <input type="text" size="7" name="totalAmt" value="$000.00" id="total-amount" readonly>
                 </div><br>
+                
+                <div id="checkout-table-container">
+                </div>
+                
+<!--
+                <table id="addTable" style="width:70%;text-align:left;">
+				<tr>
+					<th><font size = 5>Item: </font></th>
+                    <th><font size = 5>Unit Price: </font></th>
+                    <th><font size = 5>Quantity: </font></th>
+				</tr>
+                <tr id="checkout-sum">
+                </tr>
+                <hr>
+			</table>
+-->
                 
                 <hr><br>
                 

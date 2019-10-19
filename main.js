@@ -110,7 +110,7 @@ var sumCart = {
     }
 }
 
-var iframe, partSelect, qtySelect, qty, price, unitPrice, totalPrice, physicalAddr, itemSelected, myTable;
+var iframe, partSelect, qtySelect, qty, price, unitPrice, totalPrice, physicalAddr, itemSelected, myTable, row, data, dataText, HTMLTable;
 var newCell1, newCell2, newRow, tablePrice;
 
 // Ensure Iframe element is available
@@ -144,6 +144,7 @@ function loadIframeContents(){
         qtySelect = iframe.contentWindow.document.querySelector('[name="quantity"]');
         if(qtySelect){
             qtySelect.addEventListener('input', populateCart);
+            iframe.contentWindow.document.getElementById("add-button").addEventListener('click', addItem);
         }
 
         // Reset quanitity to 1 when changing products
@@ -154,15 +155,14 @@ function loadIframeContents(){
                 populateCart();
             });
         }
-        if(submitButton){
-            iframe.contentWindow.document.querySelector('[name="item1"]').value = cartField.item[0];
-            iframe.contentWindow.document.querySelector('[name="item2"]').value = cartField.item[1];
-            iframe.contentWindow.document.querySelector('[name="item3"]').value = cartField.item[2];
-            iframe.contentWindow.document.querySelector('[name="item4"]').value = cartField.item[3];
-            iframe.contentWindow.document.querySelector('[name="price1"]').value = cartField.price[0];
-            iframe.contentWindow.document.querySelector('[name="price2"]').value = cartField.price[1];
-            iframe.contentWindow.document.querySelector('[name="price3"]').value = cartField.price[2];
-            iframe.contentWindow.document.querySelector('[name="price4"]').value = cartField.price[3];
+        if(HTMLTable){
+           
+            if(iframe.contentWindow.document.getElementById("addTable")){ iframe.contentWindow.document.getElementById("addTable").replaceWith(HTMLTable);
+                                                                        }
+            
+            if(iframe.contentWindow.document.getElementById("cart-total")){
+                iframe.contentWindow.document.getElementById("cart-total").value = "$" + cart.totalAmt.toFixed(2);
+            }
         }
 
     }
@@ -202,27 +202,18 @@ function loadIframeContents(){
 
         // Populate checkout values using values already calculated in shopping cart
         if(submitButton){
-            if(iframe.contentWindow.document.querySelector('#item1').value == ""){
-                itemSel = iframe.contentWindow.document.querySelector('#item1');
-                unitPrice = iframe.contentWindow.document.querySelector('#price1');
+           
+            if(HTMLTable){
+                iframe.contentWindow.document.getElementById("checkout-table-container").appendChild(HTMLTable);
             }
-            else if(iframe.contentWindow.document.querySelector('#item2').value ==  ""){
-                itemSel = iframe.contentWindow.document.querySelector('#item2');
-                unitPrice = iframe.contentWindow.document.querySelector('#price2');
-            }
-            else if (iframe.contentWindow.document.querySelector('#item3').value == ""){
-                itemSel = iframe.contentWindow.document.querySelector('#item3');
-                unitPrice = iframe.contentWindow.document.querySelector('#price3');
-            }
-            else if (iframe.contentWindow.document.querySelector('#item4').value == ""){
-                itemSel = iframe.contentWindow.document.querySelector('#item4');
-                unitPrice = iframe.contentWindow.document.querySelector('#price4');
-            }
+            
             iframe.contentWindow.document.getElementById("cart-amount").value = "$" + cart.cartAmt.toFixed(2);
             iframe.contentWindow.document.getElementById("tax-amount").value = "$" + cart.taxAmt.toFixed(2);
             iframe.contentWindow.document.getElementById("ship-amount").value = "$" + cart.shipAmt.toFixed(2);
             iframe.contentWindow.document.getElementById("total-amount").value = "$" + cart.totalAmt.toFixed(2);
-            iframe.contentWindow.document.getElementById("supplyAmt").value = "$" + cartSum.cartSumAmt.toFixed(2);// Derek stuff
+            
+            
+            
         }
     }
 
@@ -237,22 +228,7 @@ function populateCart() {
 
     unitPrice = iframe.contentWindow.document.querySelector('#unit-price');
     totalPrice = iframe.contentWindow.document.querySelector('#total-price');
-    if(iframe.contentWindow.document.querySelector('#item1').value == ""){
-        itemSel = iframe.contentWindow.document.querySelector('#item1');
-        tablePrice = iframe.contentWindow.document.querySelector('#price1');
-    }
-    else if(iframe.contentWindow.document.querySelector('#item2').value ==  ""){
-        itemSel = iframe.contentWindow.document.querySelector('#item2');
-        tablePrice = iframe.contentWindow.document.querySelector('#price2');
-    }
-    else if (iframe.contentWindow.document.querySelector('#item3').value == ""){
-        itemSel = iframe.contentWindow.document.querySelector('#item3');
-        tablePrice = iframe.contentWindow.document.querySelector('#price3');
-    }
-    else if (iframe.contentWindow.document.querySelector('#item4').value == ""){
-        itemSel = iframe.contentWindow.document.querySelector('#item4');
-        tablePrice = iframe.contentWindow.document.querySelector('#price4');
-    }
+
     qty = qtySelect.value;
     qty = qty * 1.0;
     // Check object for given name and then populate fields based on product info
@@ -262,14 +238,15 @@ function populateCart() {
             itemSelected = items[i].title;
             totalPrice.value = "$" + (price * qty).toFixed(2);
             unitPrice.value = "$" + price;
-            tablePrice.value = "$" + price;
+            //tablePrice.value = "$" + price;
 
-            itemSel.value = itemSelected;
+            //itemSel.value = itemSelected;
             break;
         }
         totalPrice.value = "";
         unitPrice.value = "";
     }
+    
 
 }
 
@@ -293,17 +270,42 @@ function populateSummary() {
 }
 
 
-function cartSubmit(){
+function addItem(){
     cart.calc(qty, price);
     console.log(cart);
-    cartField.item[0] = iframe.contentWindow.document.querySelector('[name="item1"]').value;
-    cartField.item[1] = iframe.contentWindow.document.querySelector('[name="item2"]').value;
-    cartField.item[2] = iframe.contentWindow.document.querySelector('[name="item3"]').value;
-    cartField.item[3] = iframe.contentWindow.document.querySelector('[name="item4"]').value;
-    cartField.price[0] = iframe.contentWindow.document.querySelector('[name="price1"]').value;
-    cartField.price[1] = iframe.contentWindow.document.querySelector('[name="price2"]').value;
-    cartField.price[2] = iframe.contentWindow.document.querySelector('[name="price3"]').value;
-    cartField.price[3] = iframe.contentWindow.document.querySelector('[name="price4"]').value;
+    
+    partSelect.value = "";
+    qtySelect.value = "1";
+    
+    iframe.contentWindow.document.getElementById("cart-total").value = "$" + cart.totalAmt.toFixed(2);
+    
+    row = iframe.contentWindow.document.createElement("tr");
+    iframe.contentWindow.document.getElementById("addTable").appendChild(row);
+    
+    data = iframe.contentWindow.document.createElement("td");
+    dataText = iframe.contentWindow.document.createTextNode(itemSelected);
+    data.appendChild(dataText);
+    row.appendChild(data);
+    
+    
+    data = iframe.contentWindow.document.createElement("td");
+    dataText = iframe.contentWindow.document.createTextNode("$" + price);
+    data.appendChild(dataText);
+    row.appendChild(data);
+   
+    
+    data = iframe.contentWindow.document.createElement("td");
+    dataText = iframe.contentWindow.document.createTextNode(qty);
+    data.appendChild(dataText);
+    row.appendChild(data);
+   
+    
+    HTMLTable = iframe.contentWindow.document.getElementById("addTable").cloneNode(true);
+
+    
+}
+
+function cartSubmit(){
 
 }
 
@@ -350,12 +352,6 @@ function checkoutSubmit(){
     cart.totalAmt = iframe.contentWindow.document.querySelector('[name="totalAmt"]').value;// Derek stuff
 }
 
-function summaryInfo(){
-    iframe.contentWindow.document.querySelector('[name="supplyAmt"]').value = cart.cartAmt;// Derek stuff
-    iframe.contentWindow.document.querySelector('[name="taxAmt"]').value = cart.taxAmt;// Derek stuff
-    iframe.contentWindow.document.querySelector('[name="shipFee"]').value = cart.shipAmt;// Derek stuff
-    iframe.contentWindow.document.querySelector('[name="totalAmt"]').value = cart.totalAmt;// Derek stuff
-}
 function row() {
      myTable = iframe.contentWindow.document.getElementById("addTable");
         // insert new row.
