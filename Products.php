@@ -6,13 +6,13 @@ exit('Could not connect');
 $stmt->bind_param("s", $_GET['q']);
 $stmt->execute();
 $stmt->store_result();
-$stmt->bind_result($stateID, $stateCode, $stateName); $stmt->fetch();
+$stmt->bind_result($productID, $description, $unitPrice); $stmt->fetch();
 $stmt->close();
 echo "<table>";
 echo "<tr>";
-echo "<th>stateID</th>"; echo "<td>" . $stateID . "</td>";
-echo "<th>stateCode</th>"; echo "<td>" . $stateCode . "</td>";
-echo "<th>stateName</th>"; echo "<td>" . $stateName . "</td>"; 
+echo "<th>productID</th>"; echo "<td>" . $productID . "</td>";
+echo "<th>description</th>"; echo "<td>" . $description . "</td>";
+echo "<th>unitPrice</th>"; echo "<td>" . $unitPrice . "</td>"; 
 echo "</table>";
 ?>
  

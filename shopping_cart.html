@@ -10,7 +10,8 @@
             <form>
                 <fieldset>
                     <legend><h3>Auto Parts</h3></legend>
-                <select name="parts">
+					<!--  add onchange=getStates(this.value) in line below -->
+                <select name="parts" onchange="getProducts(this.value)">
                     <option value=""></option>
                     <option value="alternator">alternator</option>
                     <option value="battery">battery</option>
