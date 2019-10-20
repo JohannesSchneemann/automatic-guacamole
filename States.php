@@ -1,5 +1,11 @@
 <?php
-$mysqli = new mysqli("localhost", "root", "password", "cs3320");
+$servername = "localhost";
+$username = "replace_root";
+$password = "replace_password";
+$dbname = "cs3320";
+
+$mysqli = new mysqli(servername, username, password, dbname);
+
 if($mysqli->connect_error) {
 exit('Could not connect');
 }$sql = "SELECT stateID, stateCode, stateName FROM States WHERE stateID = ?"; $stmt = $mysqli->prepare($sql);
