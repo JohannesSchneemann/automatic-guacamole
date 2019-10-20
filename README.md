@@ -28,7 +28,7 @@ Deliverables:
 **Contributers:**
 
 **Abel Shinaberry,**
-**Derek Sliva &**
+**Derek Sliva,**
 **Johannes Schneemann**
 
 
