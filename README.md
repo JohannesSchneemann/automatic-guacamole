@@ -1,28 +1,34 @@
-automatic-guacamole
+# automatic-guacamole
 
-CS 3320: Internet Software Development
+## CS 3320: Internet Software Development
 
-Project and Assignments Description
-
-Description: 
+Description:
 You have been asked to build a web application for e-commerce shopping cart. 
-
 Here are additional details:
 
-a)	Website contains four sections:
-o	User Information
-o	Shopping Cart
-o	Shipping Information
-o	Checkout with Payment Information
-b)	There are the fields for each section:
-o	see provided word document
-c)	Deliverables:
-    1.  create html pages for each section described above
-        Due date: 09/20/2019
-    2.  Put all html pages together by creating a html layout page for your website.
-        Use CSS styling to beautify your website
+The website contains the following sections
+>1. User Information
+>2. Shopping Cart
+>3. Shipping Information
+>4. Checkout with Payment Information
+>5. Layout page  
+
+Deliverables:
+> 1. create html pages for each section described above
+		Due date: 09/20/2019
+> 2. use CSS styling to beautify your website (external css file)
         Due date: 10/04/2019
-    3.  Add JavaScript to your website.  
+> 3. add JavaScript to your website (external JS file)  
         Due date: 10/18/2019
+> 4. add AJAX to your website and create local database
+		Due date: 11/1/2019
+> 5. create user login page
+		Due date 12/3/2019
+
+**Contributers:**
+
+**Abel Shinaberry,**
+**Derek Sliva & **
+**Johannes Schneemann**
 
 
