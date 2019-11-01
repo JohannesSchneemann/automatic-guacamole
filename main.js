@@ -362,6 +362,10 @@ function row() {
         newCell2.innerHTML = "Sudo Placement";
 }
 
+
+// we can delete the following code 
+/*
+
 // AJAX - get states from database
 function showStates(str) {
     var xhttp;
@@ -390,3 +394,4 @@ function getProducts(str) {
     };
     xhttp.open("GET", "Products.php?q="+str, true);
     xhttp.send();
+*/
