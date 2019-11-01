@@ -172,46 +172,21 @@ function loadIframeContents(){
         submitButton = iframe.contentWindow.document.getElementById("user-info-submit");
         submitFunc = userInfoSubmit;
 
-        // Populate user info with saved values if there is any
         if(submitButton){
+            // Pull state codes from database
+            getStatesFromDB();
+            // Populate user info with saved values if there is any
+
             iframe.contentWindow.document.querySelector('[name="fullname"]').value = userInfo.name;
             iframe.contentWindow.document.querySelector('[name="addr1"]').value = userInfo.addr[0];
             iframe.contentWindow.document.querySelector('[name="addr2"]').value = userInfo.addr[1];
             iframe.contentWindow.document.querySelector('[name="city"]').value = userInfo.city;
-            iframe.contentWindow.document.querySelector('[name="state"]').value = userInfo.state;
             iframe.contentWindow.document.querySelector('[name="zip"]').value =  userInfo.zip;
-            
-            // Pull state codes from database
-            if (window.XMLHttpRequest) {
-                // code for IE7+, Firefox, Chrome, Opera, Safari
-                xmlhttp = new XMLHttpRequest();
-            } else {
-                // code for IE6, IE5
-                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-            }
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    console.log(this.responseText);
-                    var stateArr = JSON.parse(this.responseText);
-                    console.log(stateArr);
-                    for(var i=0;i<50;i++){
-                        var stateOpt = document.createElement("OPTION");
-                        stateOpt.innerHTML = stateArr[i]['code'];
-                        console.log(stateOpt);
-                        console.log(stateArr[i]['code']);
-                        document.getElementById("stateDropDown").appendChild(stateOpt);
-                    }
-                }
-            };
-
-            xmlhttp.open("GET","getStates.php",true);
-            xmlhttp.send();
-
         }
     }
     // SHIPPING INFO
     if(!submitButton){
-
+        getStatesFromDB();
         submitButton = iframe.contentWindow.document.getElementById("ship-submit");
         submitFunc = shipSubmit;
         physicalAddr = iframe.contentWindow.document.getElementById("physical-address");
@@ -389,36 +364,25 @@ function row() {
         newCell2.innerHTML = "Sudo Placement";
 }
 
+function getStatesFromDB(){
+     if (window.XMLHttpRequest) {
+                // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                // code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var stateArr = JSON.parse(this.responseText);
+                    for(var i=0;i<50;i++){
+                        var stateOpt = document.createElement("OPTION");
+                        stateOpt.innerHTML = stateArr[i]['code'];                       iframe.contentWindow.document.getElementById("stateDropDown").appendChild(stateOpt);
+                        iframe.contentWindow.document.querySelector('[name="state"]').value = userInfo.state;
+                    }
+                }
+            };
 
-// we can delete the following code 
-/*
-
-// AJAX - get states from database
-function showStates(str) {
-    var xhttp;
-    if (str == "") {
-        document.getElementById("state").innerHTML = "";
-        return;
-    }xhttp = new XMLHttpRequest(); xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("state").innerHTML = this.responseText;
-        }
-    };
-    xhttp.open("GET", "States.php?q="+str, true);
-    xhttp.send();
+            xmlhttp.open("GET","getStates.php",true);
+            xmlhttp.send();
 }
-
-// AJAX - get products from database
-function getProducts(str) {
-    var xhttp;
-    if (str == "") {
-        document.getElementById("parts").innerHTML = "";
-        return;
-    }xhttp = new XMLHttpRequest(); xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("parts").innerHTML = this.responseText;
-        }
-    };
-    xhttp.open("GET", "Products.php?q="+str, true);
-    xhttp.send();
-*/
