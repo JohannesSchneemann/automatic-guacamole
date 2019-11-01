@@ -180,6 +180,33 @@ function loadIframeContents(){
             iframe.contentWindow.document.querySelector('[name="city"]').value = userInfo.city;
             iframe.contentWindow.document.querySelector('[name="state"]').value = userInfo.state;
             iframe.contentWindow.document.querySelector('[name="zip"]').value =  userInfo.zip;
+            
+            // Pull state codes from database
+            if (window.XMLHttpRequest) {
+                // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                // code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log(this.responseText);
+                    var stateArr = JSON.parse(this.responseText);
+                    console.log(stateArr);
+                    for(var i=0;i<50;i++){
+                        var stateOpt = document.createElement("OPTION");
+                        stateOpt.innerHTML = stateArr[i]['code'];
+                        console.log(stateOpt);
+                        console.log(stateArr[i]['code']);
+                        document.getElementById("stateDropDown").appendChild(stateOpt);
+                    }
+                }
+            };
+
+            xmlhttp.open("GET","getStates.php",true);
+            xmlhttp.send();
+
         }
     }
     // SHIPPING INFO
@@ -362,6 +389,10 @@ function row() {
         newCell2.innerHTML = "Sudo Placement";
 }
 
+
+// we can delete the following code 
+/*
+
 // AJAX - get states from database
 function showStates(str) {
     var xhttp;
@@ -390,3 +421,4 @@ function getProducts(str) {
     };
     xhttp.open("GET", "Products.php?q="+str, true);
     xhttp.send();
+*/
