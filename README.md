@@ -21,7 +21,7 @@ Deliverables:
 > 3. add JavaScript to your website (external JS file)  
         Due date: 10/18/2019
 > 4. add AJAX to your website and create local database
-		Due date: 11/1/2019
+		Due date: 11/7/2019
 > 5. create user login page
 		Due date 12/3/2019
 
