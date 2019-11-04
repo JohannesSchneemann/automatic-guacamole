@@ -365,6 +365,7 @@ function row() {
 }
 
 function getStatesFromDB(){
+	var STATES = 50;
      if (window.XMLHttpRequest) {
                 // code for IE7+, Firefox, Chrome, Opera, Safari
                 xmlhttp = new XMLHttpRequest();
@@ -375,7 +376,7 @@ function getStatesFromDB(){
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     var stateArr = JSON.parse(this.responseText);
-                    for(var i=0;i<50;i++){
+                    for(var i=0;i<STATES;i++){
                         var stateOpt = document.createElement("OPTION");
                         stateOpt.innerHTML = stateArr[i]['code'];                       iframe.contentWindow.document.getElementById("stateDropDown").appendChild(stateOpt);
                         iframe.contentWindow.document.querySelector('[name="state"]').value = userInfo.state;
@@ -384,5 +385,33 @@ function getStatesFromDB(){
             };
 
             xmlhttp.open("GET","getStates.php",true);
+            xmlhttp.send();
+}
+
+function getProductsFromDB(){
+	var PRODUCTS = 10;
+     if (window.XMLHttpRequest) {
+                // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                // code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var productArr = JSON.parse(this.responseText);
+                    for(var i=0;i<PRODUCTS;i++){
+                        var productOpt = document.createElement("OPTION");
+                        productOpt.innerHTML = productArr[i]['desc'];
+						
+						
+						// the next 2 lines need corrections
+						iframe.contentWindow.document.getElementById("productDropDown").appendChild(productOpt); 
+                        iframe.contentWindow.document.querySelector('[name="products"]').value = shoppingCart.products;
+                    }
+                }
+            };
+
+            xmlhttp.open("GET","getProducts.php",true);
             xmlhttp.send();
 }
