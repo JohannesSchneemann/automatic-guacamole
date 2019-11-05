@@ -405,7 +405,7 @@ function getProductsFromDB(){
                         productOpt.innerHTML = productArr[i]['desc'];
 						
 						
-						// the next 2 lines need corrections
+						// the next 2 lines need corrections -> added html tags 11/5
 						iframe.contentWindow.document.getElementById("productDropDown").appendChild(productOpt); 
                         iframe.contentWindow.document.querySelector('[name="products"]').value = shoppingCart.products;
                     }
