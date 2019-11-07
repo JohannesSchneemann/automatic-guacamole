@@ -1,35 +1,35 @@
 <?php
+    extract($_POST);
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "cs3320";
 
-$con = mysqli_connect("localhost","root","not","cs3320");
+    $con = new mysqli($servername, $username, $password, $dbname);
+        
+        // Check connection
+        if (mysqli_connect_errno())
+        {
+            echo "Failed to connect to MySQL: " . mysqli_connect_error();
+        }
+        mysqli_select_db($con,"cs3320");
 
-if (!$con){
-  die('Could not connect: ' . mysql_error());
-  }else echo "connected!!!<br>";
+            
+        $fullname = $_POST["fullname"];
+        $address1 = $_POST["addr1"];
+        $address2 = $_POST["addr2"];
+        $city = $_POST["city"];
+        $state = $_POST["state"];
+        $zip = $_POST["zip"];
+        $phone = $_POST["phone"];
+        $email = $_POST["email"];
 
- 
-$sql="INSERT INTO cs3320.userInformation (fName, address1, address2, city, state, zip, email, notes)
+        $sql = "INSERT INTO userinformation (fullname,address1,address2,city,state,zip,phone,email) VALUES ('$fullname','$address1','$address2','$city','$state','$zip','$phone','$email')";
 
-VALUES
-('$_POST[fName]', 
-'$_POST[address1]',
-'$_POST[address2]',
-'$_POST[city]',
-'$_POST[state]',
-'$_POST[zip]',
-'$_POST[email]')";
+        mysqli_query($con,"SELECT * FROM userinformation");
+        mysqli_query($con,$sql);
 
 
-echo $sql;
-
-//execute the INSERT
-if (!mysqli_query($con,$sql)){
-      die('Error: ' . mysqli_error($con));
-  }else {
-     echo "<br>1 record added";
-  }
- 
-mysqli_close($con)
-
+        mysqli_close($con);
+        
 ?>
-
-
