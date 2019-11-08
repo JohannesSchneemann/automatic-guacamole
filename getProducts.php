@@ -1,6 +1,5 @@
 <?php
 include 'database_connect.php';
-
 $conn = OpenCon();
 //echo "Connected Successfully";
 

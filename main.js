@@ -139,14 +139,16 @@ function loadIframeContents(){
 
         submitButton = iframe.contentWindow.document.getElementById("cart-submit");
         submitFunc = cartSubmit;
-
+        getProductsFromDB();
+    
+        
         // Populate cart details when a new unit size or product is select
         qtySelect = iframe.contentWindow.document.querySelector('[name="quantity"]');
         if(qtySelect){
             qtySelect.addEventListener('input', populateCart);
             iframe.contentWindow.document.getElementById("add-button").addEventListener('click', addItem);
         }
-
+        
         // Reset quanitity to 1 when changing products
         partSelect = iframe.contentWindow.document.querySelector('[name="products"]');
         if(partSelect){
@@ -227,7 +229,7 @@ function loadIframeContents(){
 }
 
 function populateCart() {
-
+    
     unitPrice = iframe.contentWindow.document.querySelector('#unit-price');
     totalPrice = iframe.contentWindow.document.querySelector('#total-price');
 
@@ -400,14 +402,16 @@ function getProductsFromDB(){
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     var productArr = JSON.parse(this.responseText);
+                    console.log(productArr);
                     for(var i=0;i<PRODUCTS;i++){
                         var productOpt = document.createElement("OPTION");
+                        productOpt.value = i;
                         productOpt.innerHTML = productArr[i]['desc'];
 						
 						
 						// the next 2 lines need corrections -> added html tags 11/5
 						iframe.contentWindow.document.getElementById("productDropDown").appendChild(productOpt); 
-                        iframe.contentWindow.document.querySelector('[name="products"]').value = shoppingCart.products;
+                        iframe.contentWindow.document.querySelector('[name="products"]').value = cart.products;
                     }
                 }
             };
