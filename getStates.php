@@ -3,7 +3,6 @@ include 'database_connect.php';
 $conn = OpenCon();
 //echo "Connected Successfully";
 
-
 $sql = "SELECT * FROM states";
 
 $result = mysqli_query($conn, $sql);
