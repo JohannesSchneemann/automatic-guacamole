@@ -148,7 +148,7 @@ function loadIframeContents(){
         }
 
         // Reset quanitity to 1 when changing products
-        partSelect = iframe.contentWindow.document.querySelector('[name="parts"]');
+        partSelect = iframe.contentWindow.document.querySelector('[name="products"]');
         if(partSelect){
             partSelect.addEventListener('change', function(){
                 qtySelect.value = 1;
