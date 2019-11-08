@@ -1,77 +1,3 @@
-// All products (Will eventually be in database)
-var items = [{
-    id:123,
-    title:"alternator",
-    unit: 1,
-    desc:"Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-    img:"alternator.png",
-    price:179.00
-},{
-    id:456,
-    title:"battery",
-    unit: 1,
-    desc:"Quisquam, veritatis, officia. Veritatis, saepe!",
-    img:"battery.png",
-    price:135.00
-},{
-    id:789,
-    title:"brake disc",
-    unit: 1,
-    desc:"Fugit dolorum consequatur rem molestiae, possimus dignissimos!",
-    img:"brake_disk.png",
-    price:30.00
-},{
-    id:987,
-    title:"drive belt",
-    unit: 1,
-    desc:"Donec arcu risus diam amet sit.",
-    img:"drive_belt.png",
-    price:10.00
-},{
-    id:654,
-    title:"engine oil",
-    unit: 1,
-    desc:"In vitae vel, wisi at, id praesent bibendum libero faucibus porta egestas, quisque praesent ipsum fermentum tempor.",
-    img:"engine_oil.png",
-    price:25.00
-},{
-    id:321,
-    title:"floor mats",
-    unit: 1,
-    desc:"Maecenas aliquam maecenas ligula nostra, accumsan taciti.",
-    img:"floor_mats.png",
-    price:89.00
-},{
-    id:234,
-    title:"light bulbs",
-    unit: 1,
-    desc:"Arcu habitasse elementum est, ipsum purus pede porttitor class.",
-    img:"light_bulbs.png",
-    price:2.00
-},{
-    id:567,
-    title:"spark plug",
-    unit: 1,
-    desc:"Porttitor mollis imperdiet libero senectus pulvinar.",
-    img:"spark_plug.png",
-    price:8.00
-},{
-    id:809,
-    title:"tires",
-    unit: 1,
-    desc:"Repellat orci erat et, sem cum, ultricies sollicitudin amet eleifend dolor nullam erat, malesuada est leo ac.",
-    img:"tires.png",
-    price:85.00
-},{
-    id:101,
-    title:"windshield wipers",
-    unit: 1,
-    desc:"Duis montes, tellus lobortis lacus amet arcu et.",
-    img:"windshield_wipers.png",
-    price:12.00
-}];
-
-
 // User info for address
 var userInfo = {
     name: "",
@@ -110,7 +36,7 @@ var sumCart = {
     }
 }
 
-var iframe, partSelect, qtySelect, qty, price, unitPrice, totalPrice, physicalAddr, itemSelected, myTable, row, data, dataText, HTMLTable;
+var items, iframe, partSelect, qtySelect, qty, price, unitPrice, totalPrice, physicalAddr, itemSelected, myTable, row, data, dataText, HTMLTable;
 var newCell1, newCell2, newRow, tablePrice;
 
 // Ensure Iframe element is available
@@ -237,11 +163,11 @@ function populateCart() {
     qty = qty * 1.0;
     // Check object for given name and then populate fields based on product info
     for(var i=0; i<items.length; i++){
-        if(items[i].title == partSelect.value){
-            price = items[i].price.toFixed(2);
-            itemSelected = items[i].title;
+        if(i == partSelect.value){
+            price = items[i]['price'];
+            itemSelected = items[i]['desc'];
             totalPrice.value = "$" + (price * qty).toFixed(2);
-            unitPrice.value = "$" + price;
+            unitPrice.value = "$" + price + ".00";
             //tablePrice.value = "$" + price;
 
             //itemSel.value = itemSelected;
@@ -261,8 +187,8 @@ function populateSummary() {
     qty = qty * 1.0;
     // Check object for given name and then populate fields based on product info
     for(var i=0; i<items.length; i++){
-        if(items[i].title == partSelect.value){
-            price = items[i].price.toFixed(2);
+        if(i == partSelect.value){
+            price = items[i]['price'];
             totalPrice.value = "$" + (price * qty).toFixed(2);
             unitPrice.value = "$" + price;
             break;
@@ -402,7 +328,6 @@ function getProductsFromDB(){
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     var productArr = JSON.parse(this.responseText);
-                    console.log(productArr);
                     for(var i=0;i<PRODUCTS;i++){
                         var productOpt = document.createElement("OPTION");
                         productOpt.value = i;
@@ -413,6 +338,7 @@ function getProductsFromDB(){
 						iframe.contentWindow.document.getElementById("productDropDown").appendChild(productOpt); 
                         iframe.contentWindow.document.querySelector('[name="products"]').value = cart.products;
                     }
+                    items = productArr;
                 }
             };
 
