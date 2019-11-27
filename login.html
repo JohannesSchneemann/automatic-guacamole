@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 
 <html lang="en">
+     <title>Junkard Inc.</title>
+
         
     <body>
         <form>
 		<fieldset>
-                <legend class="form-name"><h3>Login</h3></legend>
-			    <table>
-				<tr>
-					<td><font size = 5>Username:</font></td>
-					<td><input type="text" name="username" maxlength="100"></td>
-				</tr>
-				<tr>
-					<td><font size = 5>Password:  </font></td>
-					<td><input type="text" name="password" maxlength="100"></td>
-				</tr>
-			</table>
-			<br>
-			<input onClick="location.href='CS3320Project.html'" id="submit" type="button" value="Submit">
+                <legend class="form-name"><h3>Junkyard Inc. Login</h3></legend>
+			    	<table>
+						<tr>
+							<td><font size = 5>Username:</font></td>
+							<td><input type="text" placeholder="Enter Username" maxlength="100" name="uname" required></td>
+						</tr>
+						<tr>
+							<td><font size = 5>Password:  </font></td> 
+							<td><input type="password" placeholder="Enter Password" maxlength="100" name="psw" required ></td>
+						</tr>
+					</table>
+				<label> <input type="checkbox" checked="checked" name="remember"> Remember me </label>
+			<div align="center"> <a href="#">Forgot password?</a></div>
+					
+				<input onClick="location.href='CS3320Project.html'" id="submit" type="button" value="Login">
 		</fieldset>
         </form>
-            
     </body>
 </html>
