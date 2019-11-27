@@ -1,6 +1,6 @@
 <?php
 function OpenCon() {
-	$dbhost = "localhost";
+	$dbhost = "localhost:8889";
  	$dbuser = "root";
  	$dbpass = "root";
  	$db = "cs3320";
