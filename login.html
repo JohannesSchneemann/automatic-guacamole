@@ -1,27 +1,23 @@
 <!DOCTYPE html>
 
 <html lang="en">
-     <title>Junkard Inc.</title>
-
-        
     <body>
-        <form>
+        <form action="get_userCredentials.php" method="get">
 		<fieldset>
-                <legend class="form-name"><h3>Junkyard Inc. Login</h3></legend>
+                <legend class="form-name"><h3>Login</h3></legend>
 			    	<table>
 						<tr>
-							<td><font size = 5>Username:</font></td>
-							<td><input type="text" placeholder="Enter Username" maxlength="100" name="uname" required></td>
+							<td><font size=5>Username:</font></td>
+							<td><input type="text" name="uname" placeholder="Enter Username" minlength="5" maxlength="100" required=""></td>
 						</tr>
 						<tr>
 							<td><font size = 5>Password:  </font></td> 
-							<td><input type="password" placeholder="Enter Password" maxlength="100" name="psw" required ></td>
+							<td><input type="password" name="psw" placeholder="Enter Password" minlength="6" maxlength="100" pattern=".{6,}" title="Six or more characters" required="" ></td>
 						</tr>
 					</table>
-				<label> <input type="checkbox" checked="checked" name="remember"> Remember me </label>
-			<div align="center"> <a href="#">Forgot password?</a></div>
-					
-				<input onClick="location.href='CS3320Project.html'" id="submit" type="button" value="Login">
+				<label><input type="checkbox" checked="checked" name="remember"> Remember me</label>
+				<div align="center"> <a href="#">Forgot password?</a></div>	
+				<input onClick="location.href='user_info.html'" id="submit" type="button" value="Sign in">
 		</fieldset>
         </form>
     </body>
