@@ -230,10 +230,14 @@ function addItem(){
     row.appendChild(data);
    
     
-    HTMLTable = iframe.contentWindow.document.getElementById("addTable").cloneNode(true);
-
-    
+    HTMLTable = iframe.contentWindow.document.getElementById("addTable").cloneNode(true);  
 }
+
+function deleteRow(r){
+	var row = r.parentNode.parentNode.rowIndex;
+	document.getElementById("addTable").deleteRow(r);
+}
+
 
 function cartSubmit(){
 
@@ -344,9 +348,4 @@ function getProductsFromDB(){
 
             xmlhttp.open("GET","getProducts.php",true);
             xmlhttp.send();
-}
-
-function deleteRow(r){
-	var row = r.parentNode.parentNode;
-	row.parentNode.removeChild(row);
 }
