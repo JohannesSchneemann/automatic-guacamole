@@ -345,3 +345,8 @@ function getProductsFromDB(){
             xmlhttp.open("GET","getProducts.php",true);
             xmlhttp.send();
 }
+
+function deleteRow(r){
+	var i = r.parentNode.parentNode.rowIndex;
+	document.getElementById("addTable").deleteRow(i);
+}
