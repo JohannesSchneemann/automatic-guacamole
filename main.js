@@ -347,6 +347,6 @@ function getProductsFromDB(){
 }
 
 function deleteRow(r){
-	var i = r.parentNode.parentNode.rowIndex;
-	document.getElementById("addTable").deleteRow(i);
+	var row = r.parentNode.parentNode;
+	row.parentNode.removeChild(row);
 }
