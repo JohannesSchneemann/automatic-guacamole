@@ -2,17 +2,21 @@
 
 <html lang="en">
     <body>
-        <form action="login.php" method="get">
+        <!--
+        <form action="login.php" method="get"> -->
+        <form action="get_userCredentials.php" method="get">
+
+
 		<fieldset>
                 <legend class="form-name"><h3>Login</h3></legend>
 			    	<table>
 						<tr>
 							<td><font size=5>Username:</font></td>
-							<td><input type="text" name="uname" placeholder="Enter Username" minlength="5" maxlength="100" required=""></td>
+							<td><input type="text" name="uname" id="username" placeholder="Enter Username" minlength="5" maxlength="100" required=""></td>
 						</tr>
 						<tr>
 							<td><font size = 5>Password:  </font></td>
-							<td><input type="password" name="psw" placeholder="Enter Password" minlength="6" maxlength="100" pattern=".{6,}" title="Six or more characters" required="" ></td>
+							<td><input type="password" name="psw" id="password" placeholder="Enter Password" minlength="6" maxlength="100" pattern=".{6,}" title="Six or more characters" required="" ></td>
 						</tr>
 					</table>
 				<label><input type="checkbox" checked="checked" name="remember"> Remember me</label>

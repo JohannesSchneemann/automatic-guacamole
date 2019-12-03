@@ -336,9 +336,6 @@ function getProductsFromDB(){
                         var productOpt = document.createElement("OPTION");
                         productOpt.value = i;
                         productOpt.innerHTML = productArr[i]['desc'];
-						
-						
-						// the next 2 lines need corrections -> added html tags 11/5
 						iframe.contentWindow.document.getElementById("productDropDown").appendChild(productOpt); 
                         iframe.contentWindow.document.querySelector('[name="products"]').value = cart.products;
                     }
@@ -347,5 +344,60 @@ function getProductsFromDB(){
             };
 
             xmlhttp.open("GET","getProducts.php",true);
+            xmlhttp.send();
+}
+
+
+function getUserNameFromDB(){
+	var USERS = 3;
+     if (window.XMLHttpRequest) {
+                // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                // code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var unameArr = JSON.parse(this.responseText);
+                    for(var i=0;i<USERS;i++){
+                        var unamerOpt = document.createElement("OPTION");
+                        unameOpt.value = i;
+                        unameOpt.innerHTML = unameArr[i]['usrname'];
+						iframe.contentWindow.document.getElementById("username").appendChild(unameOpt); 
+                        //iframe.contentWindow.document.querySelector('[name="products"]').value = cart.products;
+                    }
+                    items = unameArr;
+                }
+            };
+
+            xmlhttp.open("GET","get_userCredentials.php",true);
+            xmlhttp.send();
+}
+
+function getPasswordsFromDB(){
+	var PASSWORDS = 3;
+     if (window.XMLHttpRequest) {
+                // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                // code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var passwordArr = JSON.parse(this.responseText);
+                    for(var i=0;i<PASSWORDS;i++){
+                        var pwdOpt = document.createElement("OPTION");
+                        pwdOpt.value = i;
+                        pwdOpt.innerHTML = pwdArr[i]['pword'];
+						iframe.contentWindow.document.getElementById("password").appendChild(pwdOpt); 
+                        //iframe.contentWindow.document.querySelector('[name="products"]').value = cart.products;
+                    }
+                    items = passwordArr;
+                }
+            };
+
+            xmlhttp.open("GET","get_userCredentials.php",true);
             xmlhttp.send();
 }
