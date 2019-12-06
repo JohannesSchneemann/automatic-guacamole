@@ -73,6 +73,7 @@ function loadIframeContents(){
         if(qtySelect){
             qtySelect.addEventListener('input', populateCart);
             iframe.contentWindow.document.getElementById("add-button").addEventListener('click', addItem);
+            
         }
         
         // Reset quanitity to 1 when changing products
@@ -280,10 +281,12 @@ function shipSubmit(){
 }
 
 function checkoutSubmit(){
-    cart.cartAmt = iframe.contentWindow.document.getElementById("cart-amount").value; // Derek stuff
-    cart.taxAmt = iframe.contentWindow.document.querySelector('[name="taxAmt"]').value;// Derek stuff
-    cart.shipAmt = iframe.contentWindow.document.querySelector('[name="shipAmt"]').value;// Derek stuff
-    cart.totalAmt = iframe.contentWindow.document.querySelector('[name="totalAmt"]').value;// Derek stuff
+  window.parent.window.alert("Your order has been successfully submitted.");
+    
+//    cart.cartAmt = iframe.contentWindow.document.getElementById("cart-amount").value; // Derek stuff
+//    cart.taxAmt = iframe.contentWindow.document.querySelector('[name="taxAmt"]').value;// Derek stuff
+//    cart.shipAmt = iframe.contentWindow.document.querySelector('[name="shipAmt"]').value;// Derek stuff
+//    cart.totalAmt = iframe.contentWindow.document.querySelector('[name="totalAmt"]').value;// Derek stuff
 }
 
 function row() {
